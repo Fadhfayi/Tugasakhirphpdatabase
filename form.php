@@ -1,8 +1,9 @@
 <?php
 require_once('koneksi.php');
 
-$no = $_POST ['id'];
-$ambil_data = mysqli_query($koneksi, "SELECT data_anggota.*, data_tingkat.id, data_tingkat.tingkat FROM data_anggota JOIN daftar_tingkat on data_anggota.id=daftar_tingkat.no_anggota JOIN data_tingkat on daftar_tingkat.id_tingkat=data_tingkat.id where `no_anggota` = $no");
+$no = $_POST['id'];
+
+$ambil_data = mysqli_query($koneksi, "SELECT data_anggota.*, data_tingkat.id, data_tingkat.tingkat FROM data_anggota JOIN daftar_tingkat on data_anggota.id_anggota = daftar_tingkat.no_anggota JOIN data_tingkat on daftar_tingkat.id_tingkat=data_tingkat.id where `no_anggota` = $no");
 $ambil_data_tingkat = mysqli_query($koneksi, "SELECT * FROM `data_tingkat`");
 
 $data = mysqli_fetch_assoc($ambil_data);

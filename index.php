@@ -1,7 +1,7 @@
 <?php
 include_once('getdata.php');    
 session_start();
-$no = $data ['id'];
+$no = $data ['id_anggota'];
 $nama = $data ['nama'];
 $handphone = $data ['handphone'];
 $umur = $data ['umur'];
@@ -34,7 +34,7 @@ if ($_SESSION['nama_login'] == null) {
 
     <?php require_once('navbar.php'); ?>
     
-    <div class="container mt-5">
+    <div class="container mt-5 ">
         <form action="postdata.php" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
@@ -60,7 +60,7 @@ if ($_SESSION['nama_login'] == null) {
             </div>
             <div class="mb-3">
             <label for="tingkat" class="form-label">Tingkat</label>
-            <select class="form-select" name='tingkat' d="tingkat">
+            <select class="form-select" name='tingkat' id="tingkat">
                 <option>Pilih Tingkat</option>
                 <?php
                 while ($tingkat = mysqli_fetch_assoc($ambil_data_tingkat)) {
@@ -79,6 +79,11 @@ if ($_SESSION['nama_login'] == null) {
         </form>
     </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

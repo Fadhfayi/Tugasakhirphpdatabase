@@ -1,7 +1,9 @@
 <?php
 include_once('koneksi.php');
-$no = $_POST['no'];
-$query = "select `foto` from `data_anggota` where `id` = '$no'  ";
+
+$id = $_POST['no'];
+
+$query = "SELECT `foto` from `data_anggota` where `id_anggota` = '$id'  ";
 $data_foto = mysqli_query($koneksi, $query);
 $foto = mysqli_fetch_assoc($data_foto);
 
@@ -9,7 +11,7 @@ $foto = mysqli_fetch_assoc($data_foto);
 unlink("assets/" . $foto['foto']) ?? '';
 
 // Hapus data;
-$hapus_data = mysqli_query($koneksi, "DELETE from `data_anggota` where `id` = '$no' ");
+$hapus_data = mysqli_query($koneksi, "DELETE from `data_anggota` where `id_anggota` = '$id' ");
 if ($hapus_data) {
     echo "<p>Data berhasil dihapus</p>";
 }else{

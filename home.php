@@ -12,10 +12,11 @@ require_once('getdata.php');
 if (isset($_GET['pencarian'])) {
     $cari = $_GET['pencarian'];
     // panggil table data siswa
-    $ambil_data = mysqli_query($koneksi, "SELECT data_anggota.*, data_tingkat.id, data_tingkat.tingkat FROM data_anggota JOIN daftar_tingkat on data_anggota.id=daftar_tingkat.no_anggota JOIN data_tingkat on daftar_tingkat.id_tingkat=data_tingkat.id like '%$cari%' ");
+    $ambil_data = mysqli_query($koneksi, "SELECT data_anggota.*, data_tingkat.id, data_tingkat.tingkat FROM data_anggota JOIN daftar_tingkat on data_anggota.id_anggota=daftar_tingkat.no_anggota JOIN data_tingkat on daftar_tingkat.id_tingkat=data_tingkat.id like '%$cari%' ");
 } else {
     // panggil seluruh table data siswa
-    $ambil_data = mysqli_query($koneksi, "SELECT data_anggota.*, data_tingkat.id, data_tingkat.tingkat FROM data_anggota JOIN daftar_tingkat on data_anggota.id=daftar_tingkat.no_anggota JOIN data_tingkat on daftar_tingkat.id_tingkat=data_tingkat.id;");
+    $ambil_data = mysqli_query($koneksi, "SELECT data_anggota.*, data_tingkat.id, data_tingkat.tingkat FROM data_anggota JOIN daftar_tingkat on data_anggota.id_anggota=daftar_tingkat.no_anggota JOIN data_tingkat on daftar_tingkat.id_tingkat=data_tingkat.id;");
+   
 }
 
 ?>
@@ -64,7 +65,7 @@ if (isset($_GET['pencarian'])) {
 
                     ?>
                     <tr>
-                        <td scope="row"><?= $angka++; ?></td>
+                        <th><?= $angka++; ?></th>
                         <td><?= $data['nama'] ?></td>
                         <td><?= $data['handphone'] ?></td>
                         <td><?= $data['umur'] ?></td>
@@ -74,21 +75,20 @@ if (isset($_GET['pencarian'])) {
                         <td><img  width="100px" src="assets/<?= $gambar ?>" /></td>
                         <td>
                             <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                data-bs-id="<?= $no ?>" data-bs-aksi="ubah"> Ubah
+                                data-bs-id="<?= $data['id_anggota'] ?>" data-bs-aksi="ubah"> Ubah
                             </button>
                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                data-bs-id="<?= $no ?>" data-bs-aksi="hapus"> Hapus
+                                data-bs-id="<?= $data['id_anggota'] ?>" data-bs-aksi="hapus"> Hapus
                             </button>
                         </td>
                     </tr>
+
                 <?php } ?>
             </tbody>
         </table>
         <br>
         <br>
     </div>
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

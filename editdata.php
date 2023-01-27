@@ -2,7 +2,7 @@
 include_once('koneksi.php');
 // echo var_dump($_POST);
 // Kolom data di table
-$id = $_POST['id'];
+$id_anggota = $_POST['id'];
 $nama = $_POST['nama'];
 $handphone = $_POST ['handphone'];
 $umur = $_POST['umur'];
@@ -17,9 +17,11 @@ if ($foto != '') {
     $query .= ",`foto` = '$foto'";
 }
 
-$query .= " where `id` = '$id'";
+$query .= " where `id_anggota` = '$id_anggota'";
+$cek_data_kelas = mysqli_query($koneksi,"SELECT * from daftar_tingkat where `no_anggota` = '$id_anggota' ");
+$querytingkat = mysqli_query($koneksi,"UPDATE daftar_tingkat set `id_tingkat`='$id_tingkat' where `no_anggota`='$id_anggota'");
 
-$update_data = mysqli_query($koneksi,$query);
+$update_data = mysqli_query($koneksi,$query,$querytingkat);
 
 if ($update_data) {
     echo "<p>Data berhasil masuk</p>";
@@ -29,14 +31,13 @@ if ($update_data) {
 }
 
 
-$cek_data_kelas = mysqli_query($koneksi,"SELECT * from daftar_tingkat where `no_anggota` = '$id'");
+
 // update daftar kelas
-if (mysqli_fetch_assoc($cek_data_kelas)) {
-    $querytingkat = mysqli_query($koneksi,"UPDATE daftar_tingkat set `id_tingkat` = '$id_tingkat' where `no_anggota` = '$id'");
-    $update_data = mysqli_query($koneksi, $querytingkat);
-} else {
-    // $query = mysqli_query($koneksi,"insert data_kelas values ( null,'$no','$id_kelas')");
-}
+// if (mysqli_fetch_assoc($cek_data_kelas)) {
+//  $update_data = mysqli_query($koneksi, $querytingkat);
+// } else {
+//     // $query = mysqli_query($koneksi,"insert data_kelas values ( null,'$no','$id_kelas')");
+// }
 
 
 

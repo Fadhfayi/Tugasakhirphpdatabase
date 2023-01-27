@@ -11,7 +11,7 @@ if ($_SESSION['nama_login'] == null) {
 }
 
 
-$query = "SELECT asal,COUNT(asal) as kota_asal from data_anggota group by asal having kota_asal > 1 ORDER by kota_asal DESC";
+$query = "SELECT `asal`,COUNT(asal) as kota_asal from data_anggota group by asal having kota_asal > 1 ORDER by kota_asal DESC";
 $data_asal = mysqli_query($koneksi, $query);
 
 
@@ -28,7 +28,7 @@ $data_asal = mysqli_query($koneksi, $query);
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="background-color:#21618C ">
 
 
     <?php require_once('navbar.php'); ?>
@@ -43,7 +43,7 @@ $data_asal = mysqli_query($koneksi, $query);
                     <th scope="col">Jumlah</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="background-color:#21618C ">
                 <?php $no = 1;
                 while ($asal = mysqli_fetch_assoc($data_asal)) { ?>
                     <tr>
@@ -53,7 +53,7 @@ $data_asal = mysqli_query($koneksi, $query);
                     </tr>
                 <?php } ?>
 
-            </tbody>
+            </tbody style="background-color:#21618C ">
         </table>
     </div>
 
@@ -61,6 +61,6 @@ $data_asal = mysqli_query($koneksi, $query);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-</body>
+</body style="background-color:#21618C ">
 
 </html>

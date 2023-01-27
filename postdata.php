@@ -18,7 +18,7 @@ $id = $koneksi->insert_id;
 
  mysqli_query($koneksi,"INSERT into daftar_tingkat (`id_tingkat`,`no_anggota`) values ('$id_tingkat', '$id' )");
 echo "<p>Data berhasil masuk</p>";
-    echo "<meta http-equiv=refresh content=1;URL='index.php'>";
+    echo "<meta http-equiv=refresh content=1;URL='home.php'>";
 
 
 
